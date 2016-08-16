@@ -1,7 +1,5 @@
 package com.eli.polinomios;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 public class Polinomio {
 
     private double[] coeficientes;
@@ -14,7 +12,20 @@ public class Polinomio {
         return sumador;
     }
 
-    public Polinomio multiplicarCoeficiente(double coeficiente) {
+    /*
+    public Polinomio multiplicarCoeficienteNumerico(double multiplicador) {
+        for (double coeficiente : coeficientes) {
+            coeficiente *= multiplicador ;
+        }
+        this.visualizarPolinomio();
+        return this;
+    }*/
+
+    public Polinomio multiplicarCoeficienteNumerico(double multiplicador) {
+        for (int i = 0; i < coeficientes.length; i++) {
+            this.coeficientes[i] *= multiplicador;
+        }
+        this.visualizarPolinomio();
         return this;
     }
 
