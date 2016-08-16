@@ -1,8 +1,11 @@
 package com.eli.polinomios;
 
 public class Polinomio {
-    public Polinomio(double[] coeficientes){
 
+    private double[] coeficientes;
+
+    public Polinomio(double[] coeficientes){
+        this.coeficientes=coeficientes;
     }
 
     public Polinomio sumarPolinomios(Polinomio sumador){
