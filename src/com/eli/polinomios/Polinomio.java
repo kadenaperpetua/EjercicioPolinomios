@@ -19,10 +19,20 @@ public class Polinomio {
             for (int i = 0; i < sumador.coeficientes.length; i++) {
                 suma.coeficientes[i + diferenciaDeExponentes] += sumador.coeficientes[i];
             }
+
+            for (int i = 0; i < coeficientesSuma; i++) {
+                suma.coeficientes[i] += this.coeficientes[i];
+            }
+
+
         } else {
             for (int i = 0; i < this.coeficientes.length; i++) {
                 suma.coeficientes[i + diferenciaDeExponentes] += this.coeficientes[i];
             }
+            for (int i = 0; i < coeficientesSuma; i++) {
+                suma.coeficientes[i] += sumador.coeficientes[i];
+            }
+
         }
         visualizarPolinomio();
         return suma;
