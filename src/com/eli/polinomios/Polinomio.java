@@ -9,7 +9,23 @@ public class Polinomio {
     }
 
     public Polinomio sumarPolinomios(Polinomio sumador) {
-        return sumador;
+
+        int diferenciaDeExponentes = Math.abs(sumador.coeficientes.length - this.coeficientes.length);
+        int coeficientesSuma = Math.max(sumador.coeficientes.length,this.coeficientes.length);
+        Polinomio suma = new Polinomio(new double[coeficientesSuma]);
+
+
+        if (this.coeficientes.length > sumador.coeficientes.length) {
+            for (int i = 0; i < sumador.coeficientes.length; i++) {
+                suma.coeficientes[i + diferenciaDeExponentes] += sumador.coeficientes[i];
+            }
+        } else {
+            for (int i = 0; i < this.coeficientes.length; i++) {
+                suma.coeficientes[i + diferenciaDeExponentes] += this.coeficientes[i];
+            }
+        }
+        visualizarPolinomio();
+        return suma;
     }
 
     /*
@@ -25,7 +41,7 @@ public class Polinomio {
         for (int i = 0; i < coeficientes.length; i++) {
             this.coeficientes[i] *= multiplicador;
         }
-        this.visualizarPolinomio();
+        visualizarPolinomio();
         return this;
     }
 
