@@ -4,21 +4,31 @@ public class Main {
 
     public static void main(String[] args) {
 
-        double[] entradaEli ={0,1,2,3};
-        double[] entradaLuisa ={1,1,1,1,1};
-
-        Polinomio eli = new Polinomio(entradaEli);
-        Polinomio luisa = new Polinomio(entradaLuisa);
-        eli.visualizarPolinomio();
-        luisa.visualizarPolinomio();
+        double[] tresCoeficientes ={4,4,7,5};
+        double[] cincoCoeficientes ={2,0,-2,1,1};
+        double[] cero = {0};
 
 
+        Polinomio tercerGrado = new Polinomio(tresCoeficientes);
+        Polinomio quintoGrado = new Polinomio(cincoCoeficientes);
+        Polinomio gradoCero =  new Polinomio(cero);
+
+        tercerGrado.visualizarPolinomio();
+        quintoGrado.visualizarPolinomio();
+        gradoCero.visualizarPolinomio();
         System.out.println();
 
+        Polinomio suma;
+        suma = tercerGrado.sumarPolinomios(quintoGrado);
+        suma.visualizarPolinomio();
+        System.out.println();
 
-        eli.sumarPolinomios(luisa);
-        luisa.multiplicarCoeficienteNumerico(5);
-        System.out.println(luisa.evaluarPolinomio(1));
+        Polinomio derivada = tercerGrado.derivarPolinomio();
+        derivada.visualizarPolinomio();
+
+        Polinomio derivadaCero = gradoCero.derivarPolinomio();
+        derivadaCero.visualizarPolinomio();
+
 
     }
 }

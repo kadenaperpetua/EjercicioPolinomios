@@ -9,43 +9,39 @@ public class Polinomio {
     }
 
     public Polinomio sumarPolinomios(Polinomio sumador) {
-
-        int diferenciaDeExponentes = Math.abs(sumador.coeficientes.length - this.coeficientes.length);
-        int coeficientesSuma = Math.max(sumador.coeficientes.length,this.coeficientes.length);
+        int coeficientesSumando = this.coeficientes.length;
+        int coeficientesSumador = sumador.coeficientes.length;
+        int coeficientesSuma = Math.max(coeficientesSumando, coeficientesSumador);
         Polinomio suma = new Polinomio(new double[coeficientesSuma]);
 
-
-        if (this.coeficientes.length > sumador.coeficientes.length) {
-            for (int i = 0; i < sumador.coeficientes.length; i++) {
-                suma.coeficientes[i + diferenciaDeExponentes] += sumador.coeficientes[i];
+        for (int i = 1; i <= coeficientesSuma; i++) {
+            if (coeficientesSumando - i < 0) {
+                suma.coeficientes[coeficientesSuma - i] += sumador.coeficientes[coeficientesSumador - i];
+            } else if (coeficientesSumador - i < 0) {
+                suma.coeficientes[coeficientesSuma - i] += this.coeficientes[coeficientesSumando - i];
+            } else {
+                suma.coeficientes[coeficientesSuma - i] = this.coeficientes[coeficientesSumando - i] + sumador.coeficientes[coeficientesSumador - i];
             }
-
-            for (int i = 0; i < coeficientesSuma; i++) {
-                suma.coeficientes[i] += this.coeficientes[i];
-            }
-
-
-        } else {
-            for (int i = 0; i < this.coeficientes.length; i++) {
-                suma.coeficientes[i + diferenciaDeExponentes] += this.coeficientes[i];
-            }
-            for (int i = 0; i < coeficientesSuma; i++) {
-                suma.coeficientes[i] += sumador.coeficientes[i];
-            }
-
         }
-        visualizarPolinomio();
         return suma;
     }
 
-    /*
-    public Polinomio multiplicarCoeficienteNumerico(double multiplicador) {
-        for (double coeficiente : coeficientes) {
-            coeficiente *= multiplicador ;
+    public Polinomio derivarPolinomio() {
+
+
+        int coeficientesPolinomio = this.coeficientes.length;
+        if (coeficientesPolinomio > 1) {
+            int coeficientesDerivada = coeficientesPolinomio - 1;
+            Polinomio derivada = new Polinomio(new double[coeficientesDerivada]);
+            for (int i = 1; i < coeficientesPolinomio; i++) {
+                derivada.coeficientes[coeficientesDerivada - i] = this.coeficientes[coeficientesPolinomio - i - 1] * i;
+            }
+            return derivada;
+        } else {
+            return new Polinomio(new double[1]);
         }
-        this.visualizarPolinomio();
-        return this;
-    }*/
+    }
+
 
     public Polinomio multiplicarCoeficienteNumerico(double multiplicador) {
         for (int i = 0; i < coeficientes.length; i++) {
@@ -55,9 +51,6 @@ public class Polinomio {
         return this;
     }
 
-    public Polinomio derivarPolinomio() {
-        return this;
-    }
 
     public double evaluarPolinomio(double valorDeX) {
         double valorNumerico = 0;
